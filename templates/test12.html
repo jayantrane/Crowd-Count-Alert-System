@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Suggestions</title>
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+</head>
+
+<body>
+
+
+<div id="place_for_suggestions"></div>
+
+
+
+<p id="vb">fcbvcbv</p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+
+
+  
+    var config = {
+    apiKey: "AIzaSyC_F5WHsUrnvV9F0Ya9m7C55p6F3-ogqwo",
+    authDomain: "stampede-30254.firebaseapp.com",
+    databaseURL: "https://stampede-30254.firebaseio.com/",
+    storageBucket: "gs://stampede-30254.appspot.com"
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the database service
+  var database = firebase.database();
+
+  var updates = {};
+  
+ function showstamp(){
+document.getElementById("vb").innerHTML = "change reflected " ;
+
+  updates['/message/'] = '1';
+ firebase.database().ref().update(updates);
+ }
+  function showno(){
+  updates['/message/'] = '0';
+ firebase.database().ref().update(updates);
+ }
+
+  </script>
+<script>
+    function caller(){
+
+    var text = "fd";
+    var val = -2;
+    $.ajax({
+      url: "/suggestions",
+      type: "get",
+      data: {jsdata: text},
+      success: function(response) {
+        $("#place_for_suggestions").html(response);
+
+      },
+      error: function(xhr) {
+        //Do Something to handle error
+      }
+    });
+    var node = document.getElementById('place_for_suggestions'),
+
+htmlContent = node.innerHTML,
+// htmlContent = "Some <span class="foo">sample</span> text."
+
+textContent = node.textContent;
+document.getElementById("vb").innerHTML = textContent;
+if(parseInt(textContent,10) > 250)
+showstamp();
+else
+showno();
+
+
+}
+setInterval(caller,1000);
+</script>
+<script type="text/javascript">
+	
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+          <script>
+
+
+  
+    var config = {
+    apiKey: "AIzaSyC_F5WHsUrnvV9F0Ya9m7C55p6F3-ogqwo",
+    authDomain: "stampede-30254.firebaseapp.com",
+    databaseURL: "https://stampede-30254.firebaseio.com/",
+    storageBucket: "gs://stampede-30254.appspot.com"
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the database service
+  var database = firebase.database();
+
+  var updates = {};
+  var cc1 = "0";
+  var cc2 = "0";
+var s1 = "Left";
+var s2 = "Right";
+ function showstamp(){
+
+
+  updates['/cctv1/'] = cc1;
+  updates['/cctv2/'] = cc2;
+  updates['/dir1/'] = s1;
+  
+  updates['/dir2/'] = s2;
+ firebase.database().ref().update(updates);
+ }
+  function showno(){
+  updates['/cctv1/'] = '0';
+ firebase.database().ref().update(updates);
+ }
+function showstamp2(){
+
+
+  updates['/cctv2/'] = '1';
+ firebase.database().ref().update(updates);
+ }
+  function showno2(){
+  updates['/cctv2/'] = '0';
+ firebase.database().ref().update(updates);
+ }
+  </script>
+
+          <script>
+
+    function caller(){
+      
+    var text = "fd";
+    var val = -2;
+    $.ajax({
+      url: "/suggestions",
+      type: "get",
+      data: {jsdata: text},
+      success: function(response) {
+      
+        $("#ans1").html(response);
+        
+    
+      },
+      error: function(xhr) {
+        //Do Something to handle error
+      }
+    });
+$.ajax({
+      url: "/suggestions2",
+      type: "get",
+      data: {jsdata: text},
+      success: function(response) {
+            
+        $("#ans2").html(response);
+      },
+      error: function(xhr) {
+        //Do Something to handle error
+      }
+    });
+    $.ajax({
+      url: "/s1",
+      type: "get",
+      data: {jsdata: text},
+      success: function(response) {
+      
+        $("#ans11").html(response);
+        
+    
+      },
+      error: function(xhr) {
+        //Do Something to handle error
+      }
+    });$.ajax({
+      url: "/s2",
+      type: "get",
+      data: {jsdata: text},
+      success: function(response) {
+      
+        $("#ans22").html(response);
+        
+    
+      },
+      error: function(xhr) {
+        //Do Something to handle error
+      }
+    });
+    
+    
+    
+    var node = document.getElementById('ans1'),
+
+
+textContent = node.textContent;
+var x = document.getElementById('usr'),
+
+
+xin = x.value;
+if(parseInt(textContent,10) > 1.4*parseInt(xin,10)  ){
+document.getElementById("alert1").innerHTML = "Stampede Alert!!!!";
+cc1 = '1';}
+else {
+
+document.getElementById("alert1").innerHTML = "";
+  cc1 = '0';
+}
+    var node2 = document.getElementById('ans2'),
+
+
+textContent2 = node2.textContent;
+var y = document.getElementById('usr1'),
+
+
+yin = y.value;
+
+if(parseInt(textContent2,10) > 1.4*parseInt(yin,10) ){
+
+document.getElementById("alert2").innerHTML = "Stampede Alert!!!!";
+cc2 = '1';}
+else {
+
+document.getElementById("alert2").innerHTML = "";
+  cc2 = '0';
+}
+var node2 = document.getElementById('ans11'),
+
+
+textContent2 = node2.textContent;
+var cv = textContent2.toString();
+if(parseInt(textContent2,10) == 0 ){
+
+s1 = "Left";}
+else {
+  s1 = "Right";
+}
+
+var node2 = document.getElementById('ans22'),
+
+
+textContent2 = node2.textContent;
+if(parseInt(textContent2,10) == 0 ){
+
+s2 = "Left";}
+else {
+  s2 = "Right";
+}
+showstamp();
+}
+setInterval(caller,1000);
+</script>
+  <!-- 	<script type="text/javascript">
+  		
+/*do {
+    var img1 = document.getElementById("nm1");
+    img1.src = "../images/1"
+}
+while (0);  
+*/
+  	</script> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> Stampede Mangement System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/portfolio-item.css" rel="stylesheet">
+     
+      
+  </head>
+
+  <body>
+      <a id = "hid1" ></a>
+    </div> 
+  	 <img id = "nm1" src="1.jpg" alt="">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#" id ="headoof"><font size="+2">Kumbhmela Stampede Alert System</font></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4">
+        <small>Total number of feeds = 2</small>
+      </h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-sm-5">
+          <img id="bg" src="{{ url_for('video_feed') }}" alt="...loading feed, please wait......."  height="300" width="400">
+        <div class="form-group">
+        <div><label></label></div>
+      <label for="usr">Enter area (square metre) covered by CCTV</label>
+      <input type="text"  id="usr" value = "5">
+    </div>
+     </div>
+        <div class="col-sm-1">
+         
+        </div>
+        <div class="col-sm-5">
+          <img id="bg" src="{{ url_for('video_feed2') }}" alt="...loading feed, please wait......."  height="300" width="400">
+        <div><label></label></div>
+        <div class="form-group">
+      <label for="usr1">Enter area (square metre) covered by CCTV</label>
+      <input type="text"  id="usr1" value = "330">
+    </div> </div>
+        
+      
+    </div>    <!-- Footer -->
+    <div class="row">
+
+        <div class="col-sm-5">
+        <a>Estimated Count : </a>
+          <p id = "ans1"></p>
+          <a id = "alert1"></a>
+        </div>
+        <div class="col-sm-1">
+         
+        </div>
+        <div class="col-sm-5">
+        <a>Estimated Count : </a>  <p id = "ans2"></p>
+        <a id = "alert2"></a>
+        </div>
+        
+        <div class="col-sm-5">
+          <p id = "ans11" hidden></p>
+        </div>
+        <div class="col-sm-1">
+        
+        </div>
+        <div class="col-sm-5">
+         <p id = "ans22" hidden></p>
+        </div>
+        
+        
+      
+    </div> 
+  <!--  <p id = "ans1"></p>
+   <p id = "ans2"></p> -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <p id="demo"></p>
+</div>
+
+
+  </body>
+
+</html>
